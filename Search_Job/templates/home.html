@@ -1,0 +1,133 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!--    Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--    Google Fonts -->
+
+
+    <link href="{% static 'assets/css/style.css'%}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.css' %}">
+    <link href="{% static 'assets/css/reset.css'%}" rel="stylesheet" type="text/css" />
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+
+
+<!--    Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<!--    Bootstrap Icons -->
+
+
+    <title>Seach Job</title>
+
+
+</head>
+<body>
+    <header>
+        <div class="header">
+          <div class="header">
+                <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-color" data-bs-theme="dark">
+                  <div class="container-fluid">
+                      <a class="navbar-brand" href="#">Home</a>
+                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                      </button>
+
+                      <form class="form-inline my-2 my-lg-0" action="#" >
+                          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Download</button>
+                        </form>
+                  </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div class="interface">
+                <h1> Search Job</h1>
+
+                <div class="flex">
+                        <form class="form-camp" method="post" action="#"> {% csrf_token %}
+                            {{ form.title_key_words.label }}
+                            {{ form.title_key_words }}
+                            {{ form.date_start.label }}
+                            {{ form.date_start }}
+                            {{ form.description_required_keywords.label }}
+                            {{ form.description_required_keywords }}
+                            <input type="submit" value="Procurar" id="confirm">
+
+                        </form>
+
+                        {% if job_data_list or job_data_list|length > 0 %}
+                        <table id="tabela" class="table table-bordered table-striped table-sm table-dark">
+                            <tr align="center">
+                                <th>Job</th>
+                                <th>company</th>
+                                <th>JobLink</th>
+                                <th>Country</th>
+                            </tr>
+
+
+                            {% for job in job_data_list %}
+                                <tr align="center">
+                                    <td>{{ job.name }}</td>
+                                    <td> {{ job.career_page_name }}</td>
+                                    <td>{{ job.job_url }}</td>
+                                    <td>{{ job.city }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                        {% else %}
+                            <P> Job not exist </P>
+                        {% endif %}
+                        {% if messages %}
+                            <div class="alert {{message.tags}}">{{ messages }}</div>
+                        {% endif %}
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+    <div class="interface">
+        <div class="line-footer">
+            <div class="flex">
+                <div class="logo-footer">
+                 <img  src="static/asset/img/criative.jpg" alt="Criative Logo" style="width: 150px; height: auto;">
+                </div>
+                    <div class="btn-social">
+                        <a href="https://www.instagram.com/cri.ativ/" target="_blank"><button><i class="bi bi-instagram"></i></button></a>
+                        <a href="https://www.facebook.com/Criativehi" target="_blank" ><button><i class="bi bi-facebook"></i></button></a>
+                        <a href="https://wa.me/5521967523816?text=Olá,Gostaria%20de%20solicitar%20um%20serviço,%20estaria%20disponivel%20no%20momento?" target="_blank"><button><i class="bi bi-whatsapp"></i></button></a>
+                    </div>
+            </div>
+        </div>
+
+        <div class="line-footer">
+             <p><i class="bi bi-telephone-fill"></i>(21)96752-3816</p>
+            <p><i class="bi bi-geo-alt-fill"></i>Rua Estrela Nova 14, Rio de janeiro, Cascadura</p>
+            <p><i class="bi bi-envelope-fill"></i> <a href="mailto:criativehidraulica@gmail.com">criativehidraulica@gmail.com</a></p>
+            <p style="text-align: center">&copy; 2023 Criative Hidráulica. Todos os direitos reservados.</p>
+            <p style="text-align: center"><i class="bi bi-github"></i>  Desenvolvido por <span><a href="https://github.com/thiago-ndev" target="_blank">Thiago Alves</a></span></p>
+        </div>
+    </div>
+</footer>
+
+    <script src="{% static 'assets/js/main.js' %}" defer> </script>
+    <script rel="stylesheet" type="text/css" href="{% static 'assets/js/bootstrap.js' %}"></script>
+    <script rel="stylesheet" type="text/css" href="{% static 'assets/js/bootstrap.bundle.js' %}"></script>
+
+</body>
+</html>

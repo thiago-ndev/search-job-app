@@ -1,0 +1,99 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+body{
+    background-color: rgba(0, 0, 0, 0.65);
+    height: 100vh;
+
+}
+
+.top-site {
+    background-color: #4e555b;
+}
+.interface {
+    background-color: #4e555b;
+}
+.interface h1{
+    text-align: center;
+    font-size: 35px;
+    padding: 35px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.flex{
+    background-color: #4e555b;
+    display: flex;
+    justify-content: space-around;
+}
+
+.form-camp{
+    border-radius: 15px;
+    background-color: #80bdff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    border: 1px solid black;
+
+}
+
+.form-camp input{
+    border-radius: 10px;
+}
+.form-camp label{
+    font-size: 20px;
+}
+
+
+#tabela {
+    width: 70%;
+    border-radius: 15px;
+    border: #4e555b;
+}
+
+#confirm {
+    background-color: black;
+    color: white;
+}
+
+/* estilo rodapé */
+footer{
+    background-color: rgba(0, 0, 0, 0.68);
+    padding: 50px 4%;
+    box-shadow: 0 0 40px 10px rgba(255, 255, 255, 0.42);
+
+}
+
+
+footer .flex{
+    justify-content: space-between;
+
+}
+
+footer .line-footer{
+    padding: 15px 0;
+
+}
+
+footer .line-footer p i{
+    color: lightskyblue;
+    font-size: 22px;
+}
+
+.borda{
+    border-top: 2px solid lightskyblue;
+}
+
+footer .line-footer p,a{
+    color: #fff;
+}
+
+footer .line-footer span a{
+    color: lightskyblue;
+}
