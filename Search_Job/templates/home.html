@@ -21,6 +21,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
 
 
 <!--    Bootstrap Icons -->
@@ -28,36 +30,24 @@
 <!--    Bootstrap Icons -->
 
 
-    <title>Seach Job</title>
+    <title> Seach Job</title>
 
 
 </head>
 <body>
     <header>
-        <div class="header">
-          <div class="header">
-                <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-color" data-bs-theme="dark">
-                  <div class="container-fluid">
-                      <a class="navbar-brand" href="#">Home</a>
-                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span>
-                      </button>
-
-                      <form class="form-inline my-2 my-lg-0" action="#" >
-                          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Download</button>
-                        </form>
-                  </div>
-                </nav>
-            </div>
-        </div>
-    </header>
+    <form class="form-inline my-2 my-lg-0" action="#">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Download</button>
+    </form>
+</header>
 
     <main>
         <section>
             <div class="interface">
-                <h1> Search Job</h1>
+                <h1> Search Job </h1>
 
                 <div class="flex">
+                    <div class="form">
                         <form class="form-camp" method="post" action="#"> {% csrf_token %}
                             {{ form.title_key_words.label }}
                             {{ form.title_key_words }}
@@ -68,17 +58,19 @@
                             <input type="submit" value="Procurar" id="confirm">
 
                         </form>
+                    </div>
 
                         {% if job_data_list or job_data_list|length > 0 %}
                         <table id="tabela" class="table table-bordered table-striped table-sm table-dark">
-                            <tr align="center">
-                                <th>Job</th>
-                                <th>company</th>
-                                <th>JobLink</th>
-                                <th>Country</th>
-                            </tr>
-
-
+                            <thead>
+                                <tr align="center">
+                                    <th>Job</th>
+                                    <th>company</th>
+                                    <th>JobLink</th>
+                                    <th>Country</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                             {% for job in job_data_list %}
                                 <tr align="center">
                                     <td>{{ job.name }}</td>
@@ -87,9 +79,10 @@
                                     <td>{{ job.city }}</td>
                                 </tr>
                             {% endfor %}
+                        </tbody>
                         </table>
                         {% else %}
-                            <P> Job not exist </P>
+                            <P style="color: white"> Job not exist </P>
                         {% endif %}
                         {% if messages %}
                             <div class="alert {{message.tags}}">{{ messages }}</div>
@@ -105,7 +98,6 @@
         <div class="line-footer">
             <div class="flex">
                 <div class="logo-footer">
-                 <img  src="static/asset/img/criative.jpg" alt="Criative Logo" style="width: 150px; height: auto;">
                 </div>
                     <div class="btn-social">
                         <a href="https://www.instagram.com/cri.ativ/" target="_blank"><button><i class="bi bi-instagram"></i></button></a>
@@ -116,10 +108,9 @@
         </div>
 
         <div class="line-footer">
-             <p><i class="bi bi-telephone-fill"></i>(21)96752-3816</p>
             <p><i class="bi bi-geo-alt-fill"></i>Rua Estrela Nova 14, Rio de janeiro, Cascadura</p>
-            <p><i class="bi bi-envelope-fill"></i> <a href="mailto:criativehidraulica@gmail.com">criativehidraulica@gmail.com</a></p>
-            <p style="text-align: center">&copy; 2023 Criative Hidráulica. Todos os direitos reservados.</p>
+            <p><i class="bi bi-envelope-fill"></i> <a href="mailto:criativehidraulica@gmail.com">thiago.ndev@gmail.com</a></p>
+            <p style="text-align: center">&copy;  Todos os direitos reservados.</p>
             <p style="text-align: center"><i class="bi bi-github"></i>  Desenvolvido por <span><a href="https://github.com/thiago-ndev" target="_blank">Thiago Alves</a></span></p>
         </div>
     </div>
@@ -128,6 +119,6 @@
     <script src="{% static 'assets/js/main.js' %}" defer> </script>
     <script rel="stylesheet" type="text/css" href="{% static 'assets/js/bootstrap.js' %}"></script>
     <script rel="stylesheet" type="text/css" href="{% static 'assets/js/bootstrap.bundle.js' %}"></script>
-
+    <script rel="stylesheet" type="text/css" href="{% static 'assets/js/main.js' %}">  </script>
 </body>
 </html>
