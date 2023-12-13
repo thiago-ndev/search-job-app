@@ -9,7 +9,23 @@
 body{
     background-color: rgba(0, 0, 0, 0.65);
     height: 100vh;
+    overflow-x: hidden;
+    padding-bottom: 100px; /* Espaço para o rodapé */
 
+
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.68);
+    padding: 20px 4%;
+    box-shadow: 0 0 40px 10px rgba(255, 255, 255, 0.42);
+    position: relative;
+    width: 100%;
+}
+
+.form-inline {
+    display: flex;
+    justify-content: flex-end; /* Alinha o botão à direita */
 }
 
 .top-site {
@@ -24,6 +40,7 @@ body{
     padding: 35px;
     max-width: 1280px;
     margin: 0 auto;
+    color: white;
 }
 
 .flex{
@@ -67,12 +84,16 @@ footer{
     background-color: rgba(0, 0, 0, 0.68);
     padding: 50px 4%;
     box-shadow: 0 0 40px 10px rgba(255, 255, 255, 0.42);
+    position: relative;
+    bottom: 0;
+    width: 100%;
 
 }
 
 
 footer .flex{
     justify-content: space-between;
+    flex-wrap: wrap;
 
 }
 
@@ -92,8 +113,31 @@ footer .line-footer p i{
 
 footer .line-footer p,a{
     color: #fff;
+    text-decoration: none;
 }
 
 footer .line-footer span a{
     color: lightskyblue;
+}
+
+footer .line-footer span a:hover {
+    color: white; /* Cor ao passar o mouse */
+}
+
+@media screen and (max-width: 1400px){
+    .flex{
+        flex-direction: column;
+    }
+    .flex div{
+        width: 100%;
+    }
+    .flex div:first-child{
+        width: 40%;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .flex div:last-child{
+        margin-top: 20px;
+
+    }
 }
