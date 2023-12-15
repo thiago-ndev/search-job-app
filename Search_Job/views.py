@@ -31,6 +31,7 @@ def cadastrar_filtro(request):
         if request.method == 'POST':
             form = FiltredForm(request.POST)
             if form.is_valid():
+                print(form.is_valid())
                 title = [label.strip() for label in form.cleaned_data['title_key_words'].split(',')]
                 date_start = form.cleaned_data['date_start']
                 START_DATE_DATETIME = datetime.strptime(date_start, "%d/%m/%Y")
@@ -78,5 +79,4 @@ def cadastrar_filtro(request):
         return render(request, HOME_HTML, {'form': form, 'job_data_list': job_data_list})
     except Exception as ex:
         return render(request, HOME_HTML, {'form': form, 'messages': ex})
-
 
