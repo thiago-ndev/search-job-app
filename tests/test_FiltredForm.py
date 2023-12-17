@@ -1,9 +1,10 @@
-import pytest
 from Search_Job.forms import FiltredForm
+import requests
+import pytest
 
 def test_campos_obrigatorios_preenchidos_corretamente():
     form_data = {'title_key_words': 'backend, Back-end, Desenvolvedor',
-                 'date_start': '01/01/2023',
+                 'date_start': '2023-12-14',
                  'description_required_keywords': 'C#, .Net'
                  }
     form = FiltredForm(data=form_data)
