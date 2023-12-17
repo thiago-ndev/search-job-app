@@ -34,7 +34,7 @@ class JobData:
 class JobSearchService:
         def __init__(self, form_data):
             self.title = [label.strip() for label in form_data['title_key_words'].split(',')]
-            self.date_start = datetime.strptime(form_data['date_start'], "%d/%m/%Y")
+            self.date_start = form_data['date_start']
             self.description_required_keywords = [word.strip() for word in
                                                   form_data['description_required_keywords'].split(',')]
             self.headers = {'user-agent': config('header')}
@@ -69,9 +69,18 @@ class JobSearchService:
 
         def _validar_job(self, job):
             published_date = datetime.strptime(job.get('publishedDate', ''), "%Y-%m-%dT%H:%M:%S.%fZ")
-            description = job.get('description', '')
-            return published_date > self.date_start and all(
-                word in description for word in self.description_required_keywords)
+
+            # Converta self.date_start (datetime.date) para datetime.datetime
+
+            date_start_datetime = datetime.combine(self.date_start, datetime.min.time())
+
+            # verifica se a data de publicação é posterior à data de início
+
+            if published_date > date_start_datetime:
+                description = job.get('description', '')
+
+                # Verifique se todas as palavras-chave necessárias estão na descrição
+                return all(word in description for word in self.description_required_keywords)
 
         @staticmethod
         def _cadastrar_job(job):

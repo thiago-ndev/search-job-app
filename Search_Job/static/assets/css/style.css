@@ -32,6 +32,8 @@ header {
     background-color: #4e555b;
 }
 .interface {
+    display: flex;
+    flex-direction: column;
     background-color: #4e555b;
 }
 .interface h1{
@@ -44,20 +46,23 @@ header {
 }
 
 .flex{
+    flex-direction: column;
     background-color: #4e555b;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 }
 
 .form-camp{
     border-radius: 15px;
     background-color: #80bdff;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
-    padding: 20px;
+    padding: 2rem;
+    margin: 15px;
     border: 1px solid black;
-
 }
 
 .form-camp input{
@@ -69,9 +74,8 @@ header {
 
 
 #tabela {
-    width: 30%;
-    border-radius: 15px;
     border: #4e555b;
+
 }
 
 #confirm {
@@ -132,7 +136,6 @@ footer .line-footer span a:hover {
         width: 100%;
     }
     .flex div:first-child{
-        width: 40%;
         margin: 0 auto;
         padding: 20px;
     }
