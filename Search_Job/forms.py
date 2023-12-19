@@ -8,7 +8,7 @@ class FiltredForm(forms.Form):
                                                  'placeholder': 'Ex: backend, Back-end, Desenvolvedor'}
                                       ))
     date_start = forms.DateField(
-        label='Data',
+        label='Data de publicação:',
         widget=forms.DateInput(
             format='%Y-%m-%d',  # Formato padrão de data do Django
             attrs={'type': 'date'}

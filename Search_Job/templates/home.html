@@ -30,17 +30,16 @@
 <!--    Bootstrap Icons -->
 
 
-    <title> Seach Job</title>
+    <title> Search Job</title>
 
 
 </head>
-<body>
+<body style="background: black">
     <header>
-    <form class="form-inline my-2 my-lg-0" action="#">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Download</button>
-    </form>
+    <div class="form-inline my-2 my-lg-0">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Download CSV </button>
+    </div>
 </header>
-
     <main>
         <section>
             <div class="interface">
@@ -61,13 +60,18 @@
                     </div>
 
                         {% if job_data_list or job_data_list|length > 0 %}
-                        <table id="tabela" class="table table-bordered table-striped table-sm table-dark">
-                            <thead>
+                        <table id="tabela" class="table table-bordered table-striped table-sm table-light">
+                            <thead class="thead-dark">
                                 <tr align="center">
-                                    <th>Job</th>
-                                    <th>company</th>
-                                    <th>JobLink</th>
-                                    <th>Country</th>
+                                    <th scope="col">Vaga</th>
+                                    <th>Empresa</th>
+                                    <th>Link da vaga</th>
+                                    <th>Estado</th>
+                                    <th> Cidade </th>
+                                    <th> Home Office </th>
+                                    <th> Data da publicação </th>
+                                    <th> Data da pesquisa </th>
+                                    <th> País </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -75,14 +79,23 @@
                                 <tr align="center">
                                     <td>{{ job.name }}</td>
                                     <td> {{ job.career_page_name }}</td>
-                                    <td>{{ job.job_url }}</td>
+                                    <td> <a href="{{ job.job_url }}" target="_blank"><button class="btn-info"> Link </button></a></td>
+                                    <td> {{ job.state }}</td>
                                     <td>{{ job.city }}</td>
+                                    <td> {{ job.is_remote_work }}</td>
+                                    <td> {{ job.published_date }}</td>
+                                    <td> {{ job.current_date }}</td>
+                                    <td> {{ job.country }}</td>
                                 </tr>
                             {% endfor %}
                         </tbody>
                         </table>
+                            {% elif job_data_list == None %}
+                            <script>
+                                    let job_data_list = '{{ job_data_list|safe }}';
+                            </script>
                         {% else %}
-                            <P style="color: white"> Job not exist </P>
+                            <p style="color: white"> vaga não encontrada </p>
                         {% endif %}
                         {% if messages %}
                             <div class="alert {{message.tags}}">{{ messages }}</div>
@@ -92,33 +105,22 @@
             </div>
         </section>
     </main>
-
     <footer>
     <div class="interface">
         <div class="line-footer">
-            <div class="flex">
-                <div class="logo-footer">
-                </div>
-                    <div class="btn-social">
-                        <a href="https://www.instagram.com/cri.ativ/" target="_blank"><button><i class="bi bi-instagram"></i></button></a>
-                        <a href="https://www.facebook.com/Criativehi" target="_blank" ><button><i class="bi bi-facebook"></i></button></a>
-                        <a href="https://wa.me/5521967523816?text=Olá,Gostaria%20de%20solicitar%20um%20serviço,%20estaria%20disponivel%20no%20momento?" target="_blank"><button><i class="bi bi-whatsapp"></i></button></a>
-                    </div>
-            </div>
-        </div>
-
-        <div class="line-footer">
-            <p><i class="bi bi-geo-alt-fill"></i>Rua Estrela Nova 14, Rio de janeiro, Cascadura</p>
-            <p><i class="bi bi-envelope-fill"></i> <a href="mailto:criativehidraulica@gmail.com">thiago.ndev@gmail.com</a></p>
+            <p align="center"> Encontre um emprego </p>
+            <p style="text-align: center"><i class="bi bi-envelope-fill"></i> <a href="mailto:thiago.ndev@gmail.com">thiago.ndev@gmail.com</a></p>
             <p style="text-align: center">&copy;  Todos os direitos reservados.</p>
             <p style="text-align: center"><i class="bi bi-github"></i>  Desenvolvido por <span><a href="https://github.com/thiago-ndev" target="_blank">Thiago Alves</a></span></p>
         </div>
     </div>
 </footer>
 
-    <script src="{% static 'assets/js/main.js' %}" defer> </script>
+
+    <script src="{% static 'assets/js/main.js' %}" defer></script>
     <script rel="stylesheet" type="text/css" href="{% static 'assets/js/bootstrap.js' %}"></script>
     <script rel="stylesheet" type="text/css" href="{% static 'assets/js/bootstrap.bundle.js' %}"></script>
     <script rel="stylesheet" type="text/css" href="{% static 'assets/js/main.js' %}">  </script>
+
 </body>
 </html>
