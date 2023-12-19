@@ -10,13 +10,10 @@ WORKDIR /app
 
 # Instalar dependências do sistema
 RUN apt-get update && \
-    apt-get -y install nginx && \
+    apt-get install -y nginx && \
     apt-get clean
 
-# Remover configuração padrão do Nginx
-RUN rm /etc/nginx/sites-enabled/default
-
-# Instalar dependências do Python
+# Copiar e instalar dependências do Python
 COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
@@ -26,12 +23,14 @@ COPY . /app/
 # Coletar arquivos estáticos
 RUN python manage.py collectstatic --noinput
 
-# Configurar o Nginx
-COPY ./nginx.conf /etc/nginx/sites-available/
-RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled
+# Remover a configuração padrão do Nginx e adicionar a personalizada
+RUN rm /etc/nginx/sites-enabled/default
+COPY nginx.conf /etc/nginx/sites-available/
+RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
 
-# Expor a porta 80 para o Nginx e a porta 8000 para o Gunicorn
-EXPOSE 80 8000
+# Expor a porta 80 para o Nginx
+EXPOSE 80
 
-# Definir o comando para iniciar o Nginx e o Gunicorn
-CMD ["sh", "-c", "service nginx start && gunicorn Job_Project.wsgi:application --bind 0.0.0.0:8000"]
+# Iniciar o Nginx e o Gunicorn
+CMD service nginx start && gunicorn Job_Project.wsgi:application --bind 0.0.0.0:8000
+
