@@ -56,7 +56,7 @@ class JobSearchService:
         return job_data_list, error
 
     def _request(self, url):
-        response = requests.get(url, headers=self.headers)
+        response = requests.get(url, headers=self.headers, timeout=10)
         response.raise_for_status()
         return response.json()
 
@@ -68,19 +68,20 @@ class JobSearchService:
         return processed_data
 
     def _validar_job(self, job):
-        published_date = datetime.strptime(job.get('publishedDate', ''), "%Y-%m-%dT%H:%M:%S.%fZ")
+        """Verifica se o job é válido
+            Args: Converte a data de publicação para datetime e verifica se é posterior à data de início
+        """
+        try:
+            published_date = datetime.strptime(job.get('publishedDate', ''), "%Y-%m-%dT%H:%M:%S.%fZ")
+            date_start_datetime = datetime.combine(self.date_start, datetime.min.time())
 
-        # Converta self.date_start (datetime.date) para datetime.datetime
-
-        date_start_datetime = datetime.combine(self.date_start, datetime.min.time())
-
-        # verifica se a data de publicação é posterior à data de início
-
-        if published_date > date_start_datetime:
-            description = job.get('description', '')
-
-            # Verifique se todas as palavras-chave necessárias estão na descrição
-            return all(word in description for word in self.description_required_keywords)
+            if published_date > date_start_datetime:
+                description = job.get('description', '')
+                # Verifique se todas as palavras-chave necessárias estão na descrição
+                return all(word in description for word in self.description_required_keywords)
+            return False
+        except Exception as ex:
+            return ex.args
 
     @staticmethod
     def _cadastrar_job(job):
