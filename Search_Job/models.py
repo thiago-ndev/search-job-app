@@ -1,4 +1,3 @@
-from django.db import models
 from datetime import datetime
 from decouple import config
 import requests
@@ -7,14 +6,14 @@ import requests
 # Create your models here.
 class JobData:
     def __init__(self, job_id, company_id, name, description,
-                 career_page_name, type, published_date, is_remote_work,
+                 career_page_name, types, published_date, is_remote_work,
                  city, state, country, job_url, current_date):
         self.job_id = job_id
         self.company_id = company_id
         self.name = name
         self.description = description
         self.career_page_name = career_page_name
-        self.type = type
+        self.type = types
         self.published_date = published_date
         self.is_remote_work = is_remote_work
         self.city = city
@@ -31,72 +30,72 @@ class JobData:
     def __repr__(self):
         return self.__str__()
 
+
 class JobSearchService:
-        def __init__(self, form_data):
-            self.title = [label.strip() for label in form_data['title_key_words'].split(',')]
-            self.date_start = form_data['date_start']
-            self.description_required_keywords = [word.strip() for word in
-                                                  form_data['description_required_keywords'].split(',')]
-            self.headers = {'user-agent': config('header')}
+    def __init__(self, form_data):
+        self.title = [label.strip() for label in form_data['title_key_words'].split(',')]
+        self.date_start = form_data['date_start']
+        self.description_required_keywords = [word.strip() for word in
+                                              form_data['description_required_keywords'].split(',')]
+        self.headers = {'user-agent': config('header')}
 
-        def search_jobs(self):
-            job_data_list = []
-            error = None
+    def search_jobs(self):
+        job_data_list = []
+        error = None
 
-            # Filtra as palavras chaves do titulo
-            for label in self.title:
-                label_formatted = label.replace(" ", "%20")
-                url = f"https://portal.api.gupy.io/api/job?name={label_formatted}&offset=0&limit=10000"
-                try:
-                    response = self._request(url)
-                    job_data_list.extend(self._processar_response(response))
-                except Exception as e:
-                    error = str(e)
-                    break
-            return job_data_list, error
+        # Filtra as palavras chaves do titulo
+        for label in self.title:
+            label_formatted = label.replace(" ", "%20")
+            url = f"https://portal.api.gupy.io/api/job?name={label_formatted}&offset=0&limit=10000"
+            try:
+                response = self._request(url)
+                job_data_list.extend(self._processar_response(response))
+            except Exception as e:
+                error = str(e)
+                break
+        return job_data_list, error
 
-        def _request(self, url):
-            response = requests.get(url, headers=self.headers)
-            response.raise_for_status()
-            return response.json()
+    def _request(self, url):
+        response = requests.get(url, headers=self.headers)
+        response.raise_for_status()
+        return response.json()
 
-        def _processar_response(self, response_data):
-            processed_data = []
-            for job in response_data.get('data', []):
-                if self._validar_job(job):
-                    processed_data.append(self._cadastrar_job(job))
-            return processed_data
+    def _processar_response(self, response_data):
+        processed_data = []
+        for job in response_data.get('data', []):
+            if self._validar_job(job):
+                processed_data.append(self._cadastrar_job(job))
+        return processed_data
 
-        def _validar_job(self, job):
-            published_date = datetime.strptime(job.get('publishedDate', ''), "%Y-%m-%dT%H:%M:%S.%fZ")
+    def _validar_job(self, job):
+        published_date = datetime.strptime(job.get('publishedDate', ''), "%Y-%m-%dT%H:%M:%S.%fZ")
 
-            # Converta self.date_start (datetime.date) para datetime.datetime
+        # Converta self.date_start (datetime.date) para datetime.datetime
 
-            date_start_datetime = datetime.combine(self.date_start, datetime.min.time())
+        date_start_datetime = datetime.combine(self.date_start, datetime.min.time())
 
-            # verifica se a data de publicação é posterior à data de início
+        # verifica se a data de publicação é posterior à data de início
 
-            if published_date > date_start_datetime:
-                description = job.get('description', '')
+        if published_date > date_start_datetime:
+            description = job.get('description', '')
 
-                # Verifique se todas as palavras-chave necessárias estão na descrição
-                return all(word in description for word in self.description_required_keywords)
+            # Verifique se todas as palavras-chave necessárias estão na descrição
+            return all(word in description for word in self.description_required_keywords)
 
-        @staticmethod
-        def _cadastrar_job(job):
-            return JobData(
-                job.get('id', ''),
-                job.get('companyId', ''),
-                job.get('name', ''),
-                job.get('description', ''),
-                job.get('careerPageName', ''),
-                job.get('type', ''),
-                job.get('publishedDate', ''),
-                job.get('isRemoteWork', ''),
-                job.get('city', ''),
-                job.get('state', ''),
-                job.get('country', ''),
-                job.get('jobUrl', ''),
-                datetime.today().strftime('%d/%m/%Y')
-            )
-
+    @staticmethod
+    def _cadastrar_job(job):
+        return JobData(
+            job.get('id', ''),
+            job.get('companyId', ''),
+            job.get('name', ''),
+            job.get('description', ''),
+            job.get('careerPageName', ''),
+            job.get('type', ''),
+            job.get('publishedDate', ''),
+            job.get('isRemoteWork', ''),
+            job.get('city', ''),
+            job.get('state', ''),
+            job.get('country', ''),
+            job.get('jobUrl', ''),
+            datetime.today().strftime('%d/%m/%Y')
+        )

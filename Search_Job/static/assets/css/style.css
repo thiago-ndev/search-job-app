@@ -6,35 +6,33 @@
 
 }
 
-body{
-    background-color: rgba(0, 0, 0, 0.65);
+body {
+    background: black;
     height: 100vh;
-    overflow-x: hidden;
     padding-bottom: 100px; /* Espaço para o rodapé */
 
 
 }
 
 header {
-    background-color: rgba(0, 0, 0, 0.68);
+    background-color: rgb(0, 0, 0);
     padding: 20px 4%;
-    box-shadow: 0 0 40px 10px rgba(255, 255, 255, 0.42);
     position: relative;
     width: 100%;
 }
 
+/* Estilo do menu principal */
 .form-inline {
     display: flex;
     justify-content: flex-end; /* Alinha o botão à direita */
+    margin: 2rem;
+    padding: 1rem;
 }
 
-.top-site {
-    background-color: #4e555b;
-}
 .interface {
+    background-color: rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
-    background-color: #4e555b;
 }
 .interface h1{
     text-align: center;
@@ -47,7 +45,7 @@ header {
 
 .flex{
     flex-direction: column;
-    background-color: #4e555b;
+    background-color: rgb(0, 0, 0);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,7 +54,9 @@ header {
 
 .form-camp{
     border-radius: 15px;
-    background-color: #80bdff;
+    color: black;
+    background-color:  #f7f7f8
+;
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -67,6 +67,8 @@ header {
 
 .form-camp input{
     border-radius: 10px;
+    width: 100%;
+    height: 30px;
 }
 .form-camp label{
     font-size: 20px;
@@ -75,25 +77,35 @@ header {
 
 #tabela {
     border: #4e555b;
+    max-height: 400px;
+    overflow-y: auto;
 
 }
 
 #confirm {
-    background-color: black;
+    background-color: #0092b8;
     color: white;
 }
+
+#loading {
+            display: none; /* Escondido inicialmente */
+            position: fixed;
+            z-index: 1000;
+            height: 100%;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8) url('Search_Job/static/assets/img/uploading-downloading.gif') no-repeat center; /* Substitua 'loading.gif' pelo seu GIF de carregamento */
+        }
 
 /* estilo rodapé */
 footer{
     background-color: rgba(0, 0, 0, 0.68);
     padding: 50px 4%;
-    box-shadow: 0 0 40px 10px rgba(255, 255, 255, 0.42);
-    position: relative;
+    position: page;
     bottom: 0;
     width: 100%;
 
-}
 
+}
 
 footer .flex{
     justify-content: space-between;
@@ -111,13 +123,10 @@ footer .line-footer p i{
     font-size: 22px;
 }
 
-.borda{
-    border-top: 2px solid lightskyblue;
-}
-
-footer .line-footer p,a{
+footer .line-footer p,a, h2{
     color: #fff;
     text-decoration: none;
+    font-size: 22px;
 }
 
 footer .line-footer span a{
@@ -131,6 +140,23 @@ footer .line-footer span a:hover {
 @media screen and (max-width: 1400px){
     .flex{
         flex-direction: column;
+    }
+    .flex div{
+        width: 100%;
+    }
+    .flex div:first-child{
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .flex div:last-child{
+        margin-top: 20px;
+
+    }
+}
+
+@media screen and (max-width: 850px){
+    .flex{
+        flex-direction: row;
     }
     .flex div{
         width: 100%;
