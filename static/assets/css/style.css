@@ -93,7 +93,7 @@ header {
             z-index: 1000;
             height: 100%;
             width: 100%;
-            background: rgba(255, 255, 255, 0.8) url('Search_Job/static/assets/img/uploading-downloading.gif') no-repeat center; /* Substitua 'loading.gif' pelo seu GIF de carregamento */
+            background: rgba(255, 255, 255, 0.8) url('../..downloading.gif') no-repeat center; /* Substitua 'loading.gif' pelo seu GIF de carregamento */
         }
 
 /* estilo rodapé */
