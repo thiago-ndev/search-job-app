@@ -61,7 +61,7 @@ ROOT_URLCONF = 'Job_Project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["templates"],
+        'DIRS': ["Search_Job/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
