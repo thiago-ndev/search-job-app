@@ -171,11 +171,8 @@ footer .line-footer span a:hover {
     .form-camp{
         flex-direction: column;
     }
-    table{
+    table tbody tr td{
         width: 100%;
-    }
-    .flex div:last-child{
-        margin-top: 20px;
-
+        font-size: .7rem;
     }
 }
