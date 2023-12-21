@@ -55,8 +55,7 @@ header {
 .form-camp{
     border-radius: 15px;
     color: black;
-    background-color:  #f7f7f8
-;
+    background-color:  #f7f7f8;
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -156,14 +155,24 @@ footer .line-footer span a:hover {
 
 @media screen and (max-width: 850px){
     .flex{
-        flex-direction: row;
+        flex-direction: column;
     }
     .flex div{
         width: 100%;
     }
     .flex div:first-child{
-        margin: 0 auto;
-        padding: 20px;
+        width: 100%;
+    }
+    .scrollable {
+    overflow: auto; /* Ativa a barra de rolagem se necessário */
+    height: 100%; /* ou 'max-height' */
+    width: 100%;
+    }
+    .form-camp{
+        flex-direction: column;
+    }
+    table{
+        width: 100%;
     }
     .flex div:last-child{
         margin-top: 20px;
