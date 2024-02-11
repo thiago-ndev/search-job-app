@@ -27,7 +27,7 @@ SECRET_KEY = 'o-x@o$^rtk%i!8qsd%6t(+(_55ld)@%h=y9%8o7rmjdfs_se+x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["search-job.up.railway.app", "www.search-job.up.railway.app"]
+ALLOWED_HOSTS = ["search-job.up.railway.app", "www.search-job.up.railway.app", "127.0.0.1"]
 
 
 # Application definition
@@ -140,6 +140,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_HSTS_SECONDS = 31536000  # Recomenda-se começar com um valor menor e aumentar conforme testado
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
