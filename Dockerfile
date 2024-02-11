@@ -33,5 +33,4 @@ RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
 EXPOSE 80
 
 # Iniciar o Nginx e o Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "myproject.wsgi:application"]
-
+CMD service nginx start && gunicorn Job_Project.wsgi:application --bind 0.0.0.0:8000
