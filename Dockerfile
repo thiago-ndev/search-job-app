@@ -21,6 +21,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiar o projeto para o diretório de trabalho
 COPY . /app/
 
+docker run --env-file .env -p 80:80 /app/
 # Coletar arquivos estáticos
 RUN python manage.py collectstatic --noinput
 
