@@ -1,3 +1,4 @@
+from django.http import HttpResponseBadRequest
 from django.shortcuts import render
 from .models import JobSearchService
 from .forms import FiltredForm
@@ -24,3 +25,7 @@ def filtrar_job(request):
 
 def my_custom_page_not_found_view(request, exception=None):
     return render(request,  "404.html")
+
+def my_custom_session_expired_view(request, exception):
+    return render(request,  "403.html", {}, status=403)
+
