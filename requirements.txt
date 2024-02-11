@@ -65,4 +65,5 @@ tzdata==2023.3
 ua-parser==0.18.0
 urllib3==2.1.0
 user-agents==2.2.0
+whitenoise==6.6.0
 wrapt==1.16.0

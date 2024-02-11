@@ -15,3 +15,13 @@ Skils: Textos obrigatórios na descrição da vaga. Exemplo: "react".
 
 
 Projeto baseado neste outro projeto: https://github.com/Paulo-z/-gupy_scrap/tree/main
+
+Atualizações em andamento.
+
+## cobertura de testes utilizando pytest & coverage
+
+```
+coverage run -m pytest -s -v
+coverage report -m
+coverage html
+```

@@ -60,6 +60,7 @@
                         </form>
                     </div>
 
+                    <div class="scrollable">
                         {% if job_data_list or job_data_list|length > 0 %}
                         <table id="tabela" class="table table-bordered table-striped table-sm table-light">
                             <thead class="thead-dark">
@@ -70,8 +71,6 @@
                                     <th>Estado</th>
                                     <th> Cidade </th>
                                     <th> Home Office </th>
-                                    <th> Data da publicação </th>
-                                    <th> Data da pesquisa </th>
                                     <th> País </th>
                                 </tr>
                             </thead>
@@ -84,8 +83,6 @@
                                     <td> {{ job.state }}</td>
                                     <td>{{ job.city }}</td>
                                     <td> {{ job.is_remote_work }}</td>
-                                    <td> {{ job.published_date }}</td>
-                                    <td> {{ job.current_date }}</td>
                                     <td> {{ job.country }}</td>
                                 </tr>
                             {% endfor %}
@@ -101,6 +98,7 @@
                         {% if messages %}
                             <div class="alert {{message.tags}}">{{ messages }}</div>
                         {% endif %}
+                    </div>
 
                 </div>
             </div>
