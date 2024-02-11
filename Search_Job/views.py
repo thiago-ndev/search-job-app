@@ -21,3 +21,6 @@ def filtrar_job(request):
         return render(request, 'home.html', {'form': form, 'job_data_list': job_data_list})
 
     return render(request, 'home.html', {'form': form})
+
+def my_custom_page_not_found_view(request, exception=None):
+    return render(request,  "404.html")
