@@ -4,7 +4,6 @@ FROM python:3.9-slim
 # Definir variáveis de ambiente
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV DEBUG 0
 
 # Definir o diretório de trabalho no contêiner
 WORKDIR /app
