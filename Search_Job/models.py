@@ -62,9 +62,12 @@ class JobSearchService:
 
     def _processar_response(self, response_data):
         processed_data = []
+        incre = 0 # contador para debug
         for job in response_data.get('data', []):
+            incre += 1
             if self._validar_job(job):
                 processed_data.append(self._cadastrar_job(job))
+            #print(incre)
         return processed_data
 
     def _validar_job(self, job):
@@ -77,8 +80,8 @@ class JobSearchService:
 
             if published_date > date_start_datetime:
                 description = job.get('description', '')
-                # Verifique se todas as palavras-chave necessárias estão na descrição
-                return all(word in description for word in self.description_required_keywords)
+                # Verifique se as palavras-chave necessárias estão na descrição
+                return [word in description for word in self.description_required_keywords]
             return False
         except Exception as ex:
             return ex.args
