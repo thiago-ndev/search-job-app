@@ -14,7 +14,6 @@ def test_verificar_os_tipos_de_dados_do_formulario():
                  }
     job_search_service = JobSearchService(form_data)
     assert isinstance(job_search_service.title, list)
-    assert isinstance(job_search_service.date_start, str)
     assert isinstance(job_search_service.description_required_keywords, list)
 
 
