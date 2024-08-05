@@ -29,6 +29,13 @@ header {
     padding: 1rem;
 }
 
+.form-inline {
+    display: flex;
+    justify-content: flex-end; /* Alinha o botão à direita */
+    margin: 2rem;
+    padding: 1rem;
+}
+
 .interface {
     background-color: rgb(0, 0, 0);
     display: flex;

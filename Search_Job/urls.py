@@ -9,5 +9,6 @@ handler403 = "Search_Job.views.my_custom_session_expired_view"
 
 urlpatterns = [
     path('', views.filtrar_job, name='home'),
+    path('download-excel/', views.export_to_excel, name='download_excel'),
 
 ]
