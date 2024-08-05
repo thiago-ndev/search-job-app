@@ -7,14 +7,6 @@ class FiltredForm(forms.Form):
                                           attrs={'class': 'form-control',
                                                  'placeholder': 'Ex: backend, Back-end, Desenvolvedor'}
                                       ))
-    date_start = forms.DateField(
-        label='Data de publicação:',
-        widget=forms.DateInput(
-            format='%Y-%m-%d',  # Formato padrão de data do Django
-            attrs={'type': 'date'}
-        ),
-        input_formats=['%Y-%m-%d']  # Aceitar este formato para entrada
-    )
 
     description_required_keywords = forms.CharField(label='Skills:',
                                                     max_length=100,

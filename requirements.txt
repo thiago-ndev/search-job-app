@@ -7,6 +7,7 @@ colorama==0.4.6
 coverage==7.3.2
 dill==0.3.7
 Django==4.2.8
+django-sslserver==0.22
 django-user-agents==0.4.0
 dodgy==0.2.1
 et-xmlfile==1.1.0
@@ -65,4 +66,5 @@ tzdata==2023.3
 ua-parser==0.18.0
 urllib3==2.1.0
 user-agents==2.2.0
+whitenoise==6.6.0
 wrapt==1.16.0

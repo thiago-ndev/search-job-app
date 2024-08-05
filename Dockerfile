@@ -4,6 +4,7 @@ FROM python:3.9-slim
 # Definir variáveis de ambiente
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV DEBUG 0
 
 # Definir o diretório de trabalho no contêiner
 WORKDIR /app
@@ -33,4 +34,3 @@ EXPOSE 80
 
 # Iniciar o Nginx e o Gunicorn
 CMD service nginx start && gunicorn Job_Project.wsgi:application --bind 0.0.0.0:8000
-

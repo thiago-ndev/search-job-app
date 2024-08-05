@@ -55,3 +55,5 @@ cython_debug/
 /env
 .idea
 .idea/workspace.xml
+cert.pem
+key.pem
