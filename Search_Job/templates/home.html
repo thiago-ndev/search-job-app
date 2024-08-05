@@ -39,8 +39,13 @@
 <body style="background: black">
     <header>
     <div class="form-inline my-2 my-lg-0">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Download CSV </button>
+        <button id="download-btn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Download CSV </button>
     </div>
+
+    <div class="form my-10 my-lg-0">
+        <img src=""></img>
+    </div>
+
 </header>
     <main>
         <section>
@@ -52,8 +57,6 @@
                         <form class="form-camp" method="post" action="#"> {% csrf_token %}
                             {{ form.title_key_words.label }}
                             {{ form.title_key_words }}
-                            {{ form.date_start.label }}
-                            {{ form.date_start }}
                             {{ form.description_required_keywords.label }}
                             {{ form.description_required_keywords }}
                             <input type="submit" value="Procurar" id="confirm">
