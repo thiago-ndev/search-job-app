@@ -27,7 +27,7 @@ SECRET_KEY = config('Secret_Key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["search-job.up.railway.app", "www.search-job.up.railway.app", "127.0.0.1"]
+ALLOWED_HOSTS = ["search-job.up.railway.app", "www.search-job.up.railway.app", "127.0.0.1", ".elasticbeanstalk.com"]
 
 
 # Application definition
