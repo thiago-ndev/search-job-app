@@ -1,1 +1,1 @@
-web: gunicorn Job_Project.wsgi --log-file -
+web: gunicorn Job_Project.wsgi --bind 0.0.0.0:8000 --log-file -
