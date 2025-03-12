@@ -5,6 +5,7 @@ FROM python:3.9-slim
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV DEBUG 0
+ENV header=${header}
 
 # Definir o diretório de trabalho no contêiner
 WORKDIR /app
