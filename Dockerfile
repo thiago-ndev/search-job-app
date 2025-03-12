@@ -6,6 +6,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV DEBUG 0
 ENV header=${header}
+ENV Secret_Key=${Secret_Key}
 
 # Definir o diretório de trabalho no contêiner
 WORKDIR /app
