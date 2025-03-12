@@ -5,6 +5,8 @@ FROM python:3.9-slim
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV DEBUG 0
+ENV header=${header}
+ENV Secret_Key=${Secret_Key}
 
 # Definir o diretório de trabalho no contêiner
 WORKDIR /app
@@ -31,6 +33,9 @@ RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
 
 # Expor a porta 80 para o Nginx
 EXPOSE 80
+
+# Rodar os testes com coverage antes de iniciar o servidor
+RUN coverage run -m pytest -s -v
 
 # Iniciar o Nginx e o Gunicorn
 CMD service nginx start && gunicorn Job_Project.wsgi:application --bind 0.0.0.0:8000
